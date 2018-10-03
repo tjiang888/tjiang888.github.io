@@ -1,1 +1,72 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Tao Jiang</title><meta name="description" content="Tao JIANG is a scholar of classical Chinese philosophy, Mahāyāna Buddhist philosophy, and comparative philosophy at Rutgers University. Jiang's approach to philosophy is to treat it as a way to study a particular form of intellectual life and the people who conceive of it."/><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=yes,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#000000"><link rel="manifest" href="/manifest.json"><link rel="shortcut icon" href="/favicon.ico"><script type="text/javascript">!function(i){if(i.search){var l={};i.search.slice(1).split("&").forEach(function(i){var a=i.split("=");l[a[0]]=a.slice(1).join("=").replace(/~and~/g,"&")}),void 0!==l.p&&window.history.replaceState(null,null,i.pathname.slice(0,-1)+(l.p||"")+(l.q?"?"+l.q:"")+i.hash)}}(window.location)</script><link href="/static/css/main.bc0b5f42.css" rel="stylesheet"></head><canvas aria-hidden="true"></canvas><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script type="text/javascript" src="/static/js/main.cf1f06c0.js"></script></body><script>document.addEventListener("touchmove",function(t){t.preventDefault()});var width,height,path,canvasRibbon=document.getElementsByTagName("canvas")[0],ctx=canvasRibbon.getContext("2d"),dpr=window.devicePixelRatio||1,RIBBON_WIDE=90,math=Math,r=0,PI_2=2*math.PI,cos=math.cos,random=math.random;function updateData(){width=window.innerWidth,height=window.innerHeight,ctx.clearRect(0,0,width,height),canvasRibbon.width=width*dpr,canvasRibbon.height=height*dpr,ctx.scale(dpr,dpr),ctx.globalAlpha=.2}function init(){updateData(),path=[{x:0,y:.7*height+RIBBON_WIDE},{x:0,y:.7*height-RIBBON_WIDE}];var n=i();function i(){return"/"!==window.location.pathname&&path[1].x<width+RIBBON_WIDE}setTimeout(function t(){n&&(draw(path[0],path[1]),n=i(),setTimeout(t,500/width*100))},0)}function draw(t,n){ctx.beginPath(),ctx.moveTo(t.x,t.y),ctx.lineTo(n.x,n.y);var i=n.x+(2*random()-.25)*RIBBON_WIDE,a=geneY(n.y);ctx.lineTo(i,a),ctx.closePath(),r-=PI_2/-50,ctx.fillStyle="#"+(127*cos(r)+128<<16|127*cos(r+PI_2/3)+128<<8|127*cos(r+PI_2/3*2)+128).toString(16),ctx.fill(),path[0]=path[1],path[1]={x:i,y:a}}function geneY(t){var n=t+(2*random()-1.1)*RIBBON_WIDE;return height<n||n<0?geneY(t):n}updateData(),document.onclick=function(t){t.target.classList.contains("nav-link")&&init()},window.addEventListener("orientationchange",init),init()</script></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Tao Jiang</title><meta name="description" content="Tao JIANG is a scholar of classical Chinese philosophy, Mahāyāna Buddhist philosophy, and comparative philosophy at Rutgers University. Jiang's approach to philosophy is to treat it as a way to study a particular form of intellectual life and the people who conceive of it."/><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=yes,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#000000"><link rel="manifest" href="/manifest.json"><link rel="shortcut icon" href="/favicon.ico"><script type="text/javascript">!function(i){if(i.search){var l={};i.search.slice(1).split("&").forEach(function(i){var a=i.split("=");l[a[0]]=a.slice(1).join("=").replace(/~and~/g,"&")}),void 0!==l.p&&window.history.replaceState(null,null,i.pathname.slice(0,-1)+(l.p||"")+(l.q?"?"+l.q:"")+i.hash)}}(window.location)</script><link href="/static/css/main.bc0b5f42.css" rel="stylesheet"></head><canvas aria-hidden="true"></canvas><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script type="text/javascript" src="/static/js/main.cf1f06c0.js"></script></body><script>// The canvas animation is modified based on a rewriten code which is originated from Evan You's blog.
+        // https://github.com/zproo/canvas-ribbon
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault()
+        });
+        let canvasRibbon = document.getElementsByTagName('canvas')[0],
+            ctx = canvasRibbon.getContext('2d'),
+            dpr = window.devicePixelRatio || 1,
+            width,
+            height,
+            RIBBON_WIDE = 90,
+            path,
+            math = Math,
+            r = 0,
+            PI_2 = math.PI * 2,
+            cos = math.cos,
+            random = math.random;
+        updateData();
+
+        function updateData () {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            ctx.clearRect(0, 0, width, height);
+            canvasRibbon.width = width * dpr;
+            canvasRibbon.height = height * dpr;
+            ctx.scale(dpr, dpr);
+            ctx.globalAlpha = 0.2;
+        }
+
+        function init() {
+            updateData();
+            // RIBBON_WIDE = window.innerWidth <= 500 ? 90 : 161;
+            path = [{x: 0, y: height * 0.7 + RIBBON_WIDE}, {x: 0, y: height * 0.7 - RIBBON_WIDE}];
+            let status = checkStatus();
+            function checkStatus() {
+                // Prevent canvas rendering in homepage.
+                return window.location.pathname !== '/' && path[1].x < width + RIBBON_WIDE;
+            }
+            function nextFrame() {
+                if (status) {
+                    draw(path[0], path[1]);
+                    status = checkStatus();
+                    setTimeout(nextFrame, 500/width * 100);
+                }
+            }
+            setTimeout(nextFrame, 0);
+        }
+
+        function draw(start, end) {
+            ctx.beginPath();
+            ctx.moveTo(start.x, start.y);
+            ctx.lineTo(end.x, end.y);
+            var nextX = end.x + (random() * 2 - 0.25) * RIBBON_WIDE,
+                nextY = geneY(end.y);
+            ctx.lineTo(nextX, nextY);
+            ctx.closePath();
+            r -= PI_2 / -50;
+            ctx.fillStyle = '#' + (cos(r) * 127 + 128 << 16 | cos(r + PI_2 / 3) * 127 + 128 << 8 | cos(r + PI_2 / 3 * 2) * 127 + 128).toString(16);
+            if (ctx.fillStyle === "#000000") {ctx.fillStyle = "rgb(236, 133, 19)"} 
+            ctx.fill();
+            path[0] = path[1];
+            path[1] = {x: nextX, y: nextY}
+        }
+
+        function geneY(y) {
+            var temp = y + (random() * 2 - 1.1) * RIBBON_WIDE;
+            return (temp > height || temp < 0) ? geneY(y) : temp
+        }
+        document.onclick = function(e) {if (e.target.classList.contains("nav-link")) {init()}};
+        window.onresize = init;
+        window.addEventListener("orientationchange", init);
+        init();</script></html>
