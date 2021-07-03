@@ -1,0 +1,2 @@
+(self.webpackChunkportfolio=self.webpackChunkportfolio||[]).push([[90],{92158:function(e,n,t){"use strict";t.r(n);var l=t(67294),c=t(91804),a=t(64717);n.default=function(){return l.createElement(c.Ar,{lang:"cn"},l.createElement(c.pQ,{lang:"cn",title:"蒋韬"}),l.createElement(a.p2,{lang:"cn"}),l.createElement(a.VN,{lang:"cn"}),l.createElement(a.rO,{lang:"cn"}),l.createElement(a.CL,{lang:"cn"}))}}}]);
+//# sourceMappingURL=component---src-pages-index-cn-js-dec8020364e918aa24c0.js.map

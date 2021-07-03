@@ -1,0 +1,2 @@
+(self.webpackChunkportfolio=self.webpackChunkportfolio||[]).push([[417],{70830:function(e,n,t){"use strict";t.r(n);var l=t(67294),a=t(91804),r=t(64717);n.default=function(){return l.createElement(a.Ar,{lang:"en"},l.createElement(a.pQ,{lang:"en"}),l.createElement(r.p2,{lang:"en"}),l.createElement(r.VN,{lang:"en"}),l.createElement(r.rO,{lang:"en"}),l.createElement(r.CL,{lang:"en"}))}}}]);
+//# sourceMappingURL=component---src-pages-index-en-js-b557089f668672c04fab.js.map
